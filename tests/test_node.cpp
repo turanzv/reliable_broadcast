@@ -1,8 +1,13 @@
 #include <iostream>
-#include "Node.h"
-#include "Network.h"
 #include <cassert>
 #include <string>
+
+#include "Node.hpp"
+#include "Network.hpp"
+
+// Explicit instantiation for std::string
+template class Node<std::string>;
+template class Network<std::string>;
 
 void test_node_creation();
 void test_node_send_message();
@@ -23,8 +28,8 @@ int main() {
 void test_node_creation() {
     std::cout << "Node creation test..." << std::endl;
 
-    Network network;
-    Node node(1, false, network);
+    Network<std::string> network;
+    Node<std::string> node(1, false, network);
 
     assert(node.get_id() == 1);
     assert(node.is_byzantine() == false);
@@ -35,9 +40,9 @@ void test_node_creation() {
 void test_node_send_message() {
     std::cout << "Node send message test..." << std::endl;
 
-    Network network;
-    Node node1(1, false, network);
-    Node node2(2, false, network);
+    Network<std::string> network;
+    Node<std::string> node1(1, false, network);
+    Node<std::string> node2(2, false, network);
 
     network.register_node(node1);
     network.register_node(node2);
@@ -57,10 +62,10 @@ void test_node_send_message() {
 void test_node_broadcast_message() {
     std::cout << "Node broadcast message test..." << std::endl;
 
-    Network network;
-    Node node1(1, false, network);
-    Node node2(2, false, network);
-    Node node3(3, false, network);
+    Network<std::string> network;
+    Node<std::string> node1(1, false, network);
+    Node<std::string> node2(2, false, network);
+    Node<std::string> node3(3, false, network);
 
     network.register_node(node1);
     network.register_node(node2);

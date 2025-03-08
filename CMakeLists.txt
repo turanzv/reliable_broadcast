@@ -11,12 +11,13 @@ include_directories(include)
 # Create a STATIC library or core functionality
 add_library(ReliableBroadcast STATIC
     src/ReliableBroadcast.cpp
-    src/Node.cpp
-    src/Network.cpp
+    include/Network.hpp
+    include/Node.hpp
 )
 
 # Add source files
 add_executable(ReliableBroadcastApp src/main.cpp)
+target_link_libraries(ReliableBroadcastApp ReliableBroadcast)
 
 # Enable testing
 enable_testing()
