@@ -8,16 +8,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 # Include directories
 include_directories(include)
 
-# Create a STATIC library or core functionality
-add_library(ReliableBroadcast STATIC
-    src/ReliableBroadcast.cpp
-    include/Network.hpp
-    include/Node.hpp
-)
-
 # Add source files
 add_executable(ReliableBroadcastApp src/main.cpp)
-target_link_libraries(ReliableBroadcastApp ReliableBroadcast)
+
+# Ensure that the include directory is used for header files
+target_include_directories(ReliableBroadcastApp PRIVATE include)
 
 # Enable testing
 enable_testing()

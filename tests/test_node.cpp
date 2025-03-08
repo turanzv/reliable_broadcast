@@ -2,12 +2,8 @@
 #include <cassert>
 #include <string>
 
-#include "Node.hpp"
-#include "Network.hpp"
-
-// Explicit instantiation for std::string
-template class Node<std::string>;
-template class Network<std::string>;
+#include "Node.h"
+#include "Network.h"
 
 void test_node_creation();
 void test_node_send_message();
