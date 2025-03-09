@@ -12,14 +12,15 @@ template <typename T>
 class Node {
 public:
     Node(uint32_t id, bool is_byzantine, Network<T>& network_reference);
+    virtual ~Node() = default;
 
     uint32_t get_id() const;
     bool is_byzantine() const;
 
     void send_message(uint32_t target_id, const T& message);
-    void receive_message(uint32_t sender_id, const T& message);
+    virtual void receive_message(uint32_t sender_id, const T& message);
     void broadcast_message(const T& message);
-    void process_received_messages();
+    virtual void process_received_messages();
 
     bool has_messages();
 
@@ -53,6 +54,7 @@ void Node<T>::send_message(uint32_t target_id, const T& message) {
 
 template <typename T>
 void Node<T>::receive_message(uint32_t sender_id, const T& message) {
+    std::cout << "in the base class" << std::endl;
     received_messages_.push_back(std::make_pair(sender_id, message));
 }
 

@@ -28,6 +28,9 @@ Network<T>::Network() {}
 
 template <typename T>
 bool Network<T>::register_node(Node<T>* node) {
+    std::cout << "Registering Node ID: " << node->get_id() << " of type: " 
+              << typeid(*node).name() << std::endl;  // 🔍 Check type
+
     if (nodes_.find(node->get_id()) != nodes_.end()) {
         return false;
     }
