@@ -23,7 +23,7 @@ public:
 
     bool has_messages();
 
-private:
+protected:
     uint32_t id_;
     bool is_byzantine_;
     std::vector<std::pair<uint32_t, T>> received_messages_;
@@ -32,7 +32,9 @@ private:
 
 template <typename T>
 Node<T>::Node(uint32_t id, bool is_byzantine, Network<T>& network_reference)
-    :id_(id), is_byzantine_(is_byzantine), network_reference_(network_reference) {}
+    :id_(id), is_byzantine_(is_byzantine), network_reference_(network_reference) {
+        network_reference_.register_node(*this);
+    }
 
 template <typename T>
 uint32_t Node<T>::get_id() const {

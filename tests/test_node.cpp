@@ -40,9 +40,6 @@ void test_node_send_message() {
     Node<std::string> node1(1, false, network);
     Node<std::string> node2(2, false, network);
 
-    network.register_node(node1);
-    network.register_node(node2);
-
     std::string msg = "Hello Node 2!";
     node1.send_message(2, msg); 
 
@@ -62,10 +59,6 @@ void test_node_broadcast_message() {
     Node<std::string> node1(1, false, network);
     Node<std::string> node2(2, false, network);
     Node<std::string> node3(3, false, network);
-
-    network.register_node(node1);
-    network.register_node(node2);
-    network.register_node(node3);
 
     std::string msg = "Hello everyone!";
     node1.broadcast_message(msg);
