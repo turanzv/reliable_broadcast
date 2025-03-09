@@ -13,7 +13,7 @@ template <typename T>
 class Network {
 public:
     Network();
-    bool register_node(Node<T>& node);
+    bool register_node(Node<T>* node);
     bool send_message(uint32_t sender_id, uint32_t target_id, const T& message);
     bool broadcast_message(uint32_t sender_id, const T& message);
     bool deliver_messages();
@@ -27,12 +27,12 @@ template <typename T>
 Network<T>::Network() {}
 
 template <typename T>
-bool Network<T>::register_node(Node<T>& node) {
-    if (nodes_.find(node.get_id()) != nodes_.end()) {
+bool Network<T>::register_node(Node<T>* node) {
+    if (nodes_.find(node->get_id()) != nodes_.end()) {
         return false;
     }
 
-    nodes_[node.get_id()] = &node;
+    nodes_[node->get_id()] = node;
     return true;
 }
 

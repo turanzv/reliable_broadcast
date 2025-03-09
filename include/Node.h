@@ -33,7 +33,7 @@ protected:
 template <typename T>
 Node<T>::Node(uint32_t id, bool is_byzantine, Network<T>& network_reference)
     :id_(id), is_byzantine_(is_byzantine), network_reference_(network_reference) {
-        network_reference_.register_node(*this);
+        network_reference_.register_node(this);
     }
 
 template <typename T>
